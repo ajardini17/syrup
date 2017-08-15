@@ -5,7 +5,7 @@ import appId from '../../apiKey';
 import apiKey from '../../apiKey';
 import NavBar from './NavBar';
 
-const CLOUDINARY_UPLOAD_PRESET = 'bjotvl61';
+const CLOUDINARY_UPLOAD_PRESET = 'ihihark8';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmbpgz4gp/image/upload';
 
 class editProfile extends Component {
@@ -116,7 +116,7 @@ class editProfile extends Component {
       axios.post('https://api.kairos.com/enroll', body, {headers: api})
     ])
     .then(axios.spread((profile, match) => {
-      
+
       this.setState({
         firstname: '',
         profilepic: '',
@@ -128,8 +128,8 @@ class editProfile extends Component {
         uploadedFileCloudinaryUrl: ''
       })
     }))
-    .catch(err => { 
-      return console.error(err) 
+    .catch(err => {
+      return console.error(err)
     });
   }
 
@@ -155,7 +155,7 @@ class editProfile extends Component {
                     <label className="col-sm-2 control-label">Gender</label>
                     <div className="col-sm-10">
                       <select name="gender" onChange={this.handleOnChange} className="form-control">
-                        <option>Select gender</option> 
+                        <option>Select gender</option>
                         <option>Male</option>
                         <option>Female</option>
                       </select>
@@ -177,14 +177,14 @@ class editProfile extends Component {
                     <label className="col-sm-2 control-label">Profile picture</label>
                     <div className="col-sm-10">
                       <div className="dropzone" id="my-dropzone1">
-                      </div>  
+                      </div>
                     </div>
                   </div>
                   <div className="form-group">
                     <label className="col-sm-2 control-label">Additional pictures</label>
                     <div className="col-sm-10">
                       <div className="dropzone" id="my-dropzone2">
-                      </div>  
+                      </div>
                     </div>
                   </div>
                   <div className="form-group">
