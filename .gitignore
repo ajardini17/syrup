@@ -1,6 +1,6 @@
 node_modules
 static/bundle.js*
 bundle.js*
-ApiKey.js
+apiKey.js
 .env
 dbUrl.js
