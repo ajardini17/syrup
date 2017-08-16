@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../index');
+const db = require('../index.js');
 const data = require('../../data.json');
 
 
@@ -64,8 +64,8 @@ const Message = db.define('message', {
 })
 
 User.belongsToMany(User, {as: 'matchee', through: Match, unique: false});
-Message.belongsTo(User, { as: 'user', through: Message, foreignKey: {name: 'userId', unique: false }})
-Message.belongsTo(User, { as: 'recipient', through: Message, foreignKey: {name: 'recipientId', unique: false }})
+Message.belongsTo(User, { as: 'user', through: Message, foreignKey: {name: 'userId', unique: false }});
+Message.belongsTo(User, { as: 'recipient', through: Message, foreignKey: {name: 'recipientId', unique: false }});
 
 
 
@@ -100,8 +100,9 @@ Message.belongsTo(User, { as: 'recipient', through: Message, foreignKey: {name: 
 //             {id: '23',firstname: 'cary', email: 'asaesdfdf@gmail.com', profilepic: 'http://images.totalbeauty.com/content/photos/01-intro-totalbeauty-logo-Latina-Acne.jpg', images: [], bio: 'I am a big dummy user', gender: 'female', age: 28,},
 //             {id: '24',firstname: 'jennifer', email: 'apsdasdffff@gmail.com', profilepic: 'https://s-media-cache-ak0.pinimg.com/736x/f1/e0/f8/f1e0f89ea5d4275714a7af7c8f15c861--latina-girls-piano-bar.jpg', images: [], bio: 'I am a big dummy user', gender: 'female', age: 21,}
 //       ])
-//    })
-// User.sync();
+//   })
+
+User.sync();
 // User.sync({force: true});
 Match.sync();
 // Match.sync({force: true});
@@ -124,6 +125,7 @@ Message.sync();
 // .then(() => {
 //   return User.bulkCreate(data)
 // })
+// .then(()=>process.exit())
 
 module.exports = {
   User, 

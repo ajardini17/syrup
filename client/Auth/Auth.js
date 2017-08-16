@@ -31,25 +31,25 @@ export default class Auth {
         axios.get('https://stephaniefu.auth0.com/userinfo', {
           headers: {'Authorization': `Bearer ${authResult.accessToken}`}
         })
-    .then(({ data }) => {
-      console.log('this is the data', data)
-      console.log('this is the datan', data.name)
-      console.log('this is the datas', data.sub)
-      axios.post('/api/profile', {
-        email: data.name,
-        id: data.sub
+      .then(({ data }) => {
+        console.log('this is the data', data)
+        console.log('this is the datan', data.name)
+        console.log('this is the datas', data.sub)
+        axios.post('/api/profile', {
+          email: data.name,
+          id: data.sub
+        })
+        .then(res => {
+          console.log('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdafasdfasdf',res);
+          // axios.get('/api/')
+        })
+        .then(()=> {
+          this.setSession(authResult);
+        })
       })
-      .then(res => {
-        console.log('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdafasdfasdf',res);
-        // axios.get('/api/')
+      .catch(err => {
+        console.log(err)
       })
-      .then(()=> {
-        this.setSession(authResult);
-      })
-    })
-    .catch(err => {
-      console.log(err)
-    })
         // history.replace('/upload');
       } else if (err) {
         // history.replace('/upload');
