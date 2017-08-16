@@ -15,7 +15,7 @@ export default class UploadPage extends React.Component {
 			<div>
 				<NavBar/>
 				<UploadSection history={this.props.history}/>
-				
+
 				<Footer/>
 			</div>
 		)

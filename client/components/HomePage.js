@@ -1,9 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class HomePage extends React.Component {
 	constructor(){
 		super();
 	}
+
+	componentDidMount() {
+    axios.get(`/api/profile/${localStorage.idTokenPayload}`)
+    .then(profile => {
+      localStorage.setItem('firstname', profile.data.firstname)
+    })
+    .catch(err => { return console.error(err) });
+  }
 
 	render(){
 		return(

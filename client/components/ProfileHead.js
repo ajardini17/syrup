@@ -29,7 +29,13 @@ export default class ProfileHead extends React.Component {
     this.props.handleSubmit();
   }
 
+  componentDidMount() {
+    localStorage.setItem('firstname', this.props.data.firstname)
+    console.log(localStorage)
+  }
+
   render() {
+    console.log('PROFILE PIC', this.props.data.profilepic)
     return (
       <div>
         <div className="profileCard">

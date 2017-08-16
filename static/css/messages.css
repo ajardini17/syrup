@@ -67,7 +67,7 @@
   border-bottom-right-radius: 16px 14px;
   -webkit-transform: translate(0, -2px);
 }
-.from-them:after {
+/*.from-them:after {
   content: "";
   position: absolute;
   z-index: 3;
@@ -78,4 +78,4 @@
   background: white;
   border-bottom-right-radius: 10px;
   -webkit-transform: translate(-30px, -2px);
-}
+}*/
