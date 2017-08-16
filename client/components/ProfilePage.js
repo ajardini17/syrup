@@ -61,7 +61,7 @@ export default class ProfilePage extends React.Component {
         <NavBar />
         <ProfileHead data={this.state} handleSubmit={this.handleSubmit} />
         <div className="photosContainer">
-          <ProfilePhotos images={this.state.images} />       
+          <ProfilePhotos images={this.state.images} />
         </div>
       </div>
     );

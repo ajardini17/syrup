@@ -38,6 +38,8 @@ export default class OwnProfile extends React.Component {
       profile.data.images.forEach(image => {
         images.push(image);
       })
+      localStorage.setItem('firstname', profile.data.firstname)
+      console.log('MOUNTTTINGGGGG')
 
       this.setState({
         firstname: profile.data.firstname,
@@ -57,7 +59,7 @@ export default class OwnProfile extends React.Component {
         <NavBar />
         <ProfileHead data={this.state} handleSubmit={this.handleSubmit} />
         <div className="photosContainer">
-          <ProfilePhotos images={this.state.images} />       
+          <ProfilePhotos images={this.state.images} />
         </div>
       </div>
     );
