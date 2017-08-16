@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-// const url = require('./dbUrl');
+require('dotenv').config();
+require('dotenv').load();
 
-const db = new Sequelize('postgres://kljnfvjk:8Zc5bRJG7ankDzCoN8tUzR-9v2cchGeS@stampy.db.elephantsql.com:5432/kljnfvjk', {
+const db = new Sequelize(process.env.DATABASE_URL, {
   pool: {
     max: 3,
     min: 0,
-    idle: 10000
+    idle: 1000
   },
 });
-
 
 db.authenticate()
   .then(() => 

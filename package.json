@@ -36,6 +36,7 @@
     "sequelize": "^4.4.2",
     "socket.io": "^2.0.3",
     "superagent": "^3.5.2",
+    "twilio": "^3.6.2",
     "webpack": "^3.4.1"
   }
 }

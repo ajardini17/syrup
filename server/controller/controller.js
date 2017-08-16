@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const express = require('express');
 const Model = require('../../db/models/model');
 const data = require('../../data');
+const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 module.exports = {
   addProfile: (req, res) => {
@@ -77,6 +78,28 @@ module.exports = {
       matcheeId: req.params.id,
     })
     .then(data => {
+      Model.User.findOne({
+        where: {
+          userId: req.params.id
+        }
+      })
+      .then(matchedPerson => {
+        console.log('in the matched person', matchedPerson);
+        client.messages.create({
+          to: matchedPerson.phone_number,
+          from: process.env.TWILIO_NUM,
+          body: `you have a match with ${mathchedPerson.firstname}!`
+        }, function(err, message) {
+          if (err) {
+            console.log(`error in twilio send ${err}`);
+          } else {
+            console.log(message.sid);
+          }
+        })
+      })
+      .catch(err => {
+        console.log('error in finding id for twilio');
+      })
       res.status(201).send(data)
     })
     .catch(err => {

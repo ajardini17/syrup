@@ -5,8 +5,8 @@ import appId from '../../apiKey';
 import apiKey from '../../apiKey';
 import NavBar from './NavBar';
 
-const CLOUDINARY_UPLOAD_PRESET = 'bjotvl61';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmbpgz4gp/image/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'ihihark8';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmj5ovhxa/image/upload';
 
 class editProfile extends Component {
   constructor(props){
@@ -20,6 +20,7 @@ class editProfile extends Component {
       bio: '',
       gender: '',
       age: '',
+      phoneNumber:'',
       uploadedProfileCloudinaryUrl: '',
       uploadedFileCloudinaryUrl: ''
     }
@@ -93,7 +94,13 @@ class editProfile extends Component {
   handleOnChange(event) {
     let temp = event.target.name;
     this.setState({
-      [temp]: event.target.value
+      [temp]: '+1'+event.target.value
+    })
+  }
+  handlePhoneChange(event) {
+    let temp = event.target.name;
+    this.setState({
+      [temp]: '+1'+event.target.value
     })
   }
 
@@ -165,6 +172,12 @@ class editProfile extends Component {
                     <label className="col-sm-2 control-label">Age</label>
                     <div className="col-sm-10">
                       <input name="age" onChange={this.handleOnChange} type="text" className="form-control"/>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label className="col-sm-2 control-label">Phone #(optional)</label>
+                    <div className="col-sm-10">
+                      <input name="phoneNumber" onChange={this.handlePhoneChange} type="text" className="form-control"/>
                     </div>
                   </div>
                   <div className="form-group">
