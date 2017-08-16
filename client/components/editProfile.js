@@ -118,11 +118,7 @@ class editProfile extends Component {
       axios.post('https://api.kairos.com/enroll', body, {headers: api})
     ])
     .then(axios.spread((profile, match) => {
-<<<<<<< HEAD
-
-=======
       console.log('')
->>>>>>> master
       this.setState({
         firstname: '',
         profilepic: '',

@@ -29,18 +29,6 @@ export default class Auth {
         axios.get('https://stephaniefu.auth0.com/userinfo', {
           headers: {'Authorization': `Bearer ${authResult.accessToken}`}
         })
-    .then(({ data }) => {
-      console.log('this is the data', data)
-      console.log('this is the datan', data.name)
-      console.log('this is the datas', data.sub)
-      data.sub = data.sub.slice(data.sub.length - 2)
-      axios.post('/api/profile', {
-        email: data.name,
-        id: data.sub
-      })
-      .then(res => {
-        console.log('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdafasdfasdf',res);
-        // axios.get('/api/')
       .then(({ data }) => {
         console.log('this is the data', data)
         console.log('this is the datan', data.name)
