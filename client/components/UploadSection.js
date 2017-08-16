@@ -27,7 +27,6 @@ export default class UploadSection extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         this.setState({input: this.state.input});
-        console.log('This is the input: ', this.state.input);
         const imageUrl = this.state.input;
         const api = {
             "app_key": apiKey.apiKey,
@@ -57,10 +56,9 @@ export default class UploadSection extends React.Component {
         if(this.state.isMatching){
             return (
                 <div>
-                    <h3 id="uploading-message">Finding your matches...</h3>
-                    <div className="crop">
+                
                         <img src={this.state.input} id="uploaded-pic"/>
-                    </div>    
+
                 </div>    
             );
         }

@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 require('dotenv').load();
-// const url = require('./dbUrl');
 
 const db = new Sequelize(process.env.DATABASE_URL, {
   pool: {
@@ -19,5 +18,6 @@ db.authenticate()
   .catch(err => 
     console.log('Could not connect to DB', err)
   )
+
 
 module.exports = db;

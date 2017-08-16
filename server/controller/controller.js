@@ -5,7 +5,6 @@ const data = require('../../data');
 
 module.exports = {
   addProfile: (req, res) => {
-    console.log('this is the req.body ', req.body.id)
     Model.User.findOrCreate({
       where: {id: req.body.id}, defaults: {
         id: req.body.id,
@@ -19,6 +18,7 @@ module.exports = {
       }
     })
   .then(data => {
+    console.log(data,'controller.js addProfile function');
     res.status(200).send(data)
   })
   .catch(err => {
@@ -59,6 +59,9 @@ module.exports = {
   getProfile: (req, res) => {
     Model.User.findById(req.params.id)
     .then(response => {
+
+      console.log(response);
+      console.log('getProfile on controller.js')
       res.send(response);
       //res.redirect(`/profile/${req.params.id}`);
     })
@@ -127,6 +130,8 @@ module.exports = {
   },
 
   updateProfile: (req, res) => {
+    console.log(req.body);
+    console.log('updateProfile');
     Model.User.update({
       firstname: req.body.firstname,
       age: req.body.age,
