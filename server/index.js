@@ -44,5 +44,13 @@ io.on('connection', socket => {
     console.log('message: ' + msg)
     io.sockets.emit('chat message', msg);
   })
+  socket.on('promptVideoChat', () => {
+    console.log('VIDEOCHAT RECEIVED')
+    io.sockets.emit('promptVideoChat')
+  })
+  socket.on('agreeVideoChat', () => {
+    console.log('VIDEOCHAT ENGAGING')
+    io.sockets.emit('agreeVideoChat')
+  })
 
 })

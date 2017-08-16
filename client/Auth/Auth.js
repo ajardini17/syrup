@@ -33,6 +33,7 @@ export default class Auth {
       console.log('this is the data', data)
       console.log('this is the datan', data.name)
       console.log('this is the datas', data.sub)
+      data.sub = data.sub.slice(data.sub.length - 2)
       axios.post('/api/profile', {
         email: data.name,
         id: data.sub
@@ -65,7 +66,8 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
     console.log('HERE IS TYPE')
     console.log('HERE IS TYPE', authResult.idTokenPayload['sub'])
-    localStorage.setItem('idTokenPayload', authResult.idTokenPayload['sub'])
+    let token = authResult.idTokenPayload['sub'].slice(authResult.idTokenPayload['sub'].length - 2)
+    localStorage.setItem('idTokenPayload', token)
     // localStorage.setItem('idTokenPayload', authResult.idTokenPayload[0])
     // console.log('this is the authResesult', JSON.parse(authResult))
 // navigate to the home route

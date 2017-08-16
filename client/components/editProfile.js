@@ -6,7 +6,7 @@ import apiKey from '../../apiKey';
 import NavBar from './NavBar';
 
 const CLOUDINARY_UPLOAD_PRESET = 'ihihark8';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmbpgz4gp/image/upload';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmj5ovhxa/image/upload';
 
 class editProfile extends Component {
   constructor(props){

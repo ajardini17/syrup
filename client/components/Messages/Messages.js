@@ -96,7 +96,7 @@ export default class Messages extends React.Component {
                     messages: [...this.state.messages, data[i].text]
                   })
                   console.log('this is the messages', this. state.messages);
-                }}) 
+                }})
             })
           })
     })

@@ -30,6 +30,7 @@ export default class ProfileHead extends React.Component {
   }
 
   render() {
+    console.log('PROFILE PIC', this.props.data.profilepic)
     return (
       <div>
         <div className="profileCard">
