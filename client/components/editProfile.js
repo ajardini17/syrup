@@ -94,7 +94,7 @@ class editProfile extends Component {
   handleOnChange(event) {
     let temp = event.target.name;
     this.setState({
-      [temp]: '+1'+event.target.value
+      [temp]: event.target.value
     })
   }
   handlePhoneChange(event) {
