@@ -34,23 +34,27 @@ server.listen(PORT, err => {
   }
 });
 
+const users = {}
+
 io.on('connection', socket => {
     console.log('a user connected', socket.id);
     socket.on('disconnect', () => {
       console.log('user disconnected')
     });
-
+  socket.on('userOnline', username => {
+    users[username] = socket.id;
+    console.log('SSBDCMBDSCMMSBCMSCHJBSJSMDS', users)
+  })
   socket.on('send message', msg => {
     console.log('message: ' + msg)
     io.sockets.emit('chat message', msg);
   })
-  socket.on('promptVideoChat', () => {
-    console.log('VIDEOCHAT RECEIVED')
-    io.sockets.emit('promptVideoChat')
+  socket.on('promptVideoChat', (toName, myName) => {
+    socket.broadcast.to(users[toName]).emit('promptVideoChat', myName)
   })
-  socket.on('agreeVideoChat', () => {
-    console.log('VIDEOCHAT ENGAGING')
-    io.sockets.emit('agreeVideoChat')
+  socket.on('agreeVideoChat', (toName) => {
+    console.log('VIDEOCHAT AGREED', toName)
+    socket.broadcast.to(users[toName]).emit('agreeVideoChat')
   })
 
 })

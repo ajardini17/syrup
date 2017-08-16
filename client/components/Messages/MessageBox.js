@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import MessageEntry from './MessageEntry';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
-import Peer from 'simple-peer';
+import { withRouter } from 'react-router';
 
 class MessageBox extends React.Component {
 
@@ -14,14 +14,11 @@ class MessageBox extends React.Component {
   componentDidMount() {
     this.socket = io('/');
     // '/' will trigger the .on('connection') event on the server side, connects everytime the component mounts
-    this.socket.on('promptVideoChat', body => {
-      // console.log('body', body);
-      // console.log('profile', this.props.profile);
+    this.socket.emit('userOnline', localStorage.firstname)
+    this.socket.on('promptVideoChat', (user) => {
       if (confirm('Do you want to video chat?')) {
-        this.socket.emit('agreeVideoChat')
-        .then(() => {
-          this.props.history.push('/videoChat')
-        })
+        this.socket.emit('agreeVideoChat', user)
+        this.props.allProps.history.push('/videoChat')
       } else {
         alert('Chat denied');
       }
@@ -45,4 +42,4 @@ class MessageBox extends React.Component {
     );
   }
 };
-export default MessageBox;
+export default withRouter(MessageBox);

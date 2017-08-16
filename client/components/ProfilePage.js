@@ -51,6 +51,8 @@ export default class ProfilePage extends React.Component {
         age: profile.data.age,
         matched: match.data
       })
+      localStorage.setItem('firstname', profile.data.firstname)
+      console.log(localStorage)
     }))
     .catch(err => { return console.error(err) });
   }
@@ -61,7 +63,7 @@ export default class ProfilePage extends React.Component {
         <NavBar />
         <ProfileHead data={this.state} handleSubmit={this.handleSubmit} />
         <div className="photosContainer">
-          <ProfilePhotos images={this.state.images} />       
+          <ProfilePhotos images={this.state.images} />
         </div>
       </div>
     );

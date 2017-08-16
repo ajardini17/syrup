@@ -111,7 +111,7 @@ export default class Messages extends React.Component {
           </div>
           {/* <div style={divStyle} > */}
           <div className="message-box">
-            <MessageBox messages={this.state.messages} firstname={this.state.firstname} handleMatchClick={this.handleMatchClick} myname={this.state.myname}/>
+            <MessageBox allProps={this.props} messages={this.state.messages} firstname={this.state.firstname} handleMatchClick={this.handleMatchClick} myname={this.state.myname}/>
           {/* </div> */}
             <div>
               <form className="message-form">

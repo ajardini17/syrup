@@ -9,13 +9,16 @@ class VideoChat extends React.Component {
   }
 
   componentDidMount() {
+    let peer = new Peer({
+        initiator: location.hash === '#init',
+        trickle: false,
+        stream:stream
+    })
     this.socket = io('/');
     // '/' will trigger the .on('connection') event on the server side, connects everytime the component mounts
-    this.socket.emit('promptVideoChat')
-    this.socket.on('agreeVideoChat', body => {
-      // console.log('body', body);
-      // console.log('profile', this.props.profile);
-      console.log('VIDEO CHAT AGREEMENT RECEIVED')
+    this.socket.emit('promptVideoChat', this.props.location.query.firstname, localStorage.firstname)
+    this.socket.on('agreeVideoChat', () => {
+      alert('VIDEO CHAT AGREEMENT RECEIVED')
     });
   }
 
