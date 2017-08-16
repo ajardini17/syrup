@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
-require('dotenv').config()
-require('dotenv').load()
-// const url = require('./dbUrl');
 
+require('dotenv').config();
+require('dotenv').load();
 
 const db = new Sequelize(process.env.DATABASE_URL, {
   pool: {

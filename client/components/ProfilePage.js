@@ -51,8 +51,6 @@ export default class ProfilePage extends React.Component {
         age: profile.data.age,
         matched: match.data
       })
-      localStorage.setItem('firstname', profile.data.firstname)
-      console.log(localStorage)
     }))
     .catch(err => { return console.error(err) });
   }

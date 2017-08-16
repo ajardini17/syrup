@@ -4,9 +4,11 @@ import request from 'superagent';
 import appId from '../../apiKey';
 import apiKey from '../../apiKey';
 import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
 
 const CLOUDINARY_UPLOAD_PRESET = 'ihihark8';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmj5ovhxa/image/upload';
+
 
 class editProfile extends Component {
   constructor(props){
@@ -116,7 +118,11 @@ class editProfile extends Component {
       axios.post('https://api.kairos.com/enroll', body, {headers: api})
     ])
     .then(axios.spread((profile, match) => {
+<<<<<<< HEAD
 
+=======
+      console.log('')
+>>>>>>> master
       this.setState({
         firstname: '',
         profilepic: '',
@@ -189,7 +195,7 @@ class editProfile extends Component {
                   </div>
                   <div className="form-group">
                     <div className="col-sm-10 col-sm-offset-2">
-                      <button type="submit" onClick={this.handleOnUpdate} className="btn btn-primary">Submit</button>
+                      <Link to ='profile'><button type="submit" onClick={this.handleOnUpdate} className="btn btn-primary">Submit</button></Link>
                       <button type="reset" className="btn btn-default">Cancel</button>
                     </div>
                   </div>

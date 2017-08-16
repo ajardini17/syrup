@@ -48,6 +48,9 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div>
+              <Link className="navbar-brand topnav" to='/'><img id="brand-image" src="https://files.slack.com/files-pri/T2SV1LBC6-F6PA047N2/syrup_logo.png"/></Link>
+              </div>
       <div className="container topnav">
           <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -56,7 +59,6 @@ class NavBar extends Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link className="navbar-brand topnav" to='/'><img id="brand-image" src="https://files.slack.com/files-pri/T2SV1LBC6-F6PA047N2/syrup_logo.png"/></Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
@@ -66,7 +68,7 @@ class NavBar extends Component {
               <li><Link to='/profile'>Profile</Link></li>
               {/* <li><Link to='/ownProfile'>Edit Profile</Link></li> */}
                {/* {console.log('this is the propsasdff', this.props.auth)}  */}
-              <li><a onClick={() => this.logout(this.props.auth)} style={{cursor:'pointer'}}>Log Out</a></li>
+              <li><Link to ='/'><a onClick={() => this.logout(this.props.auth)} style={{cursor:'pointer'}}>Log Out</a></Link></li>
             </ul>
           </div>
       </div>
