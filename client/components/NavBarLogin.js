@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 
 export default class NavBarLogin extends React.Component {
@@ -33,7 +34,9 @@ export default class NavBarLogin extends React.Component {
 		                    <span className="icon-bar"></span>
 		                    <span className="icon-bar"></span>
                 		</button>
+					
                 		<a className="navbar-brand topnav" href="#"><img id="brand-image" src="https://files.slack.com/files-pri/T2SV1LBC6-F6PA047N2/syrup_logo.png"/></a>
+				
             		</div>
             		<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 		<ul className="nav navbar-nav navbar-right">

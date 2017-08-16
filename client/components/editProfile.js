@@ -4,9 +4,10 @@ import request from 'superagent';
 import appId from '../../apiKey';
 import apiKey from '../../apiKey';
 import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
 
 const CLOUDINARY_UPLOAD_PRESET = 'ihihark8';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmj5ovhxa/image/upload';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dmbpgz4gp/image/upload';
 
 class editProfile extends Component {
   constructor(props){
@@ -20,12 +21,13 @@ class editProfile extends Component {
       bio: '',
       gender: '',
       age: '',
-      phoneNumber:'',
+      phoneNumber: '',
       uploadedProfileCloudinaryUrl: '',
       uploadedFileCloudinaryUrl: ''
     }
 
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleOnUpdate = this.handleOnUpdate.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
     this.onProfileImageDrop = this.onProfileImageDrop.bind(this);
@@ -92,15 +94,16 @@ class editProfile extends Component {
   }
 
   handleOnChange(event) {
+    console.log('temp')
     let temp = event.target.name;
     this.setState({
       [temp]: event.target.value
     })
   }
   handlePhoneChange(event) {
-    let temp = event.target.name;
+    console.log(event.target.name, '1'+event.target.value);
     this.setState({
-      [temp]: '+1'+event.target.value
+      phoneNumber: '+1'+event.target.value
     })
   }
 
@@ -123,7 +126,7 @@ class editProfile extends Component {
       axios.post('https://api.kairos.com/enroll', body, {headers: api})
     ])
     .then(axios.spread((profile, match) => {
-      
+      console.log('')
       this.setState({
         firstname: '',
         profilepic: '',
@@ -131,6 +134,7 @@ class editProfile extends Component {
         bio: '',
         gender: '',
         age: '',
+        phoneNumber:'',
         uploadedProfileCloudinaryUrl: '',
         uploadedFileCloudinaryUrl: ''
       })
@@ -202,7 +206,7 @@ class editProfile extends Component {
                   </div>
                   <div className="form-group">
                     <div className="col-sm-10 col-sm-offset-2">
-                      <button type="submit" onClick={this.handleOnUpdate} className="btn btn-primary">Submit</button>
+                      <Link to ='profile'><button type="submit" onClick={this.handleOnUpdate} className="btn btn-primary">Submit</button></Link>
                       <button type="reset" className="btn btn-default">Cancel</button>
                     </div>
                   </div>

@@ -18,4 +18,5 @@ db.authenticate()
     console.log('Could not connect to DB', err)
   )
 
+
 module.exports = db;
