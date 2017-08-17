@@ -33,12 +33,13 @@ export default class Auth {
         console.log('this is the data', data)
         console.log('this is the datan', data.name)
         console.log('this is the datas', data.sub)
+        data.sub = data.sub.slice(data.sub.length - 2)
         axios.post('/api/profile', {
           email: data.name,
-          id:  '50' //data.sub 
+          id:  data.sub 
         })
         .then(res => {
-          console.log('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdafasdfasdf',res);
+          console.log('asdfasdf',res);
           // axios.get('/api/')
         })
         .then(()=> {

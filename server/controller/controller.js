@@ -61,7 +61,6 @@ module.exports = {
   getProfile: (req, res) => {
     Model.User.findById(req.params.id)
     .then(response => {
-
       console.log(response);
       console.log('getProfile on controller.js')
       res.send(response);
@@ -76,7 +75,7 @@ module.exports = {
   },
 
   connectMatch: (req, res) => {
-    console.log('CONNECT MATCH REQ!!!! ', req);
+    console.log('CONNECT MATCH REQ!!!! ', req.params);
     Model.Match.create({
       userId: req.params.subject_id,
       matcheeId: req.params.id,
@@ -84,15 +83,15 @@ module.exports = {
     .then(data => {
       Model.User.findOne({
         where: {
-          userId: req.params.id
+          id: req.params.id
         }
       })
       .then(matchedPerson => {
-        console.log('in the matched person', matchedPerson);
+        console.log('in the matched person', matchedPerson.phone_number);
         client.messages.create({
           to: matchedPerson.phone_number,
           from: process.env.TWILIO_NUM,
-          body: `you have a match with ${mathchedPerson.firstname}!`
+          body: `you have a match with ${matchedPerson.firstname}!`
         }, function(err, message) {
           if (err) {
             console.log(`error in twilio send ${err}`);
@@ -102,7 +101,7 @@ module.exports = {
         })
       })
       .catch(err => {
-        console.log('error in finding id for twilio');
+        console.log('error in finding id for twilio', err);
       })
       res.status(201).send(data)
     })
