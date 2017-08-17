@@ -15,9 +15,10 @@ class MessageBox extends React.Component {
     this.socket = io('/');
     // '/' will trigger the .on('connection') event on the server side, connects everytime the component mounts
     this.socket.emit('userOnline', localStorage.firstname)
-    this.socket.on('promptVideoChat', (user) => {
+    this.socket.on('promptVideoChat', (myUser, fromUser, initId) => {
       if (confirm('Do you want to video chat?')) {
-        this.socket.emit('agreeVideoChat', user)
+        localStorage.setItem('toUser', fromUser)
+        localStorage.setItem('initId', initId)
         this.props.allProps.history.push('/videoChat')
       } else {
         alert('Chat denied');
@@ -31,7 +32,7 @@ class MessageBox extends React.Component {
       <div>
         <h3 className="msg-title">Conversation with {this.props.firstname}</h3>
         <div>
-          <Link to={{ pathname: '/videoChat', query: { firstname: this.props.firstname } }}><button>Video Chat!</button></Link>
+          <Link to={{ pathname: '/videoChat/#init', query: { toName: this.props.firstname, socket: this.socket } }}><button>Video Chat!</button></Link>
         </div>
         <section className="messageSection">
           {this.props.messages.map(message => {

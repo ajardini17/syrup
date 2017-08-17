@@ -14,6 +14,7 @@ import Auth from '../Auth/Auth';
 import history from '../history';
 import editProfile from './editProfile';
 import VideoChat from './Messages/VideoChat.js';
+import VideoChatInit from './Messages/VideoChatInit.js';
 
 const auth = new Auth();
 
@@ -46,6 +47,7 @@ const App = () => {
       <Route exact path='/messages' component={Messages}/>
       <Route exact path='/editProfile' component={editProfile}/>
 			<Route exact path='/videoChat' component={VideoChat}/>
+			<Route exact path='/videoChat/#init' component={VideoChatInit}/>
       <Route path='/:id' component={ProfilePage}/>
     </Switch>
 		</div>
