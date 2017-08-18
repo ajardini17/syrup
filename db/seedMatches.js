@@ -2,7 +2,7 @@ const db = require('./index.js');
 const model = require('./models/model.js');
 const axios = require('axios');
 const apiInfo = require('../apiKey.js');
-const redis = require('./redis.js');
+// const redis = require('./redis.js');
 
 const api = {
     "app_key": apiInfo.apiKey,
