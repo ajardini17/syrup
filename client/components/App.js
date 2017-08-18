@@ -48,12 +48,8 @@ const App = () => {
       <Route exact path='/matches' component={Matches}/>
       <Route exact path='/messages' component={Messages}/>
       <Route exact path='/editProfile' component={editProfile}/>
-<<<<<<< 44f8af406797d65186aed1f477a51d0c20815377
-			<Route exact path='/videoChat' component={VideoChat}/>
-			<Route exact path='/videoChat/#init' component={VideoChatInit}/>
-=======
 	  <Route exact path='/videoChat' component={VideoChat}/>
->>>>>>> trying to do average Rank
+	  <Route exact path='/videoChat/#init' component={VideoChatInit}/>
       <Route path='/:id' component={ProfilePage}/>
     </Switch>
 		</div>
