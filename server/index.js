@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 app.use(parser.json());
 app.use(parser.urlencoded( {extended: true }));
 app.use(morgan('dev'));
-app.use(express.static(path.resolve(__dirname, '../static/index.html')));
+app.use(express.static(path.resolve(__dirname, '../static')));
 
 app.use(cors());
 
