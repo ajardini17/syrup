@@ -3,6 +3,7 @@ const express = require('express');
 const Model = require('../../db/models/model');
 const data = require('../../data');
 const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+const redis = require('../../db/redis.js');
 
 module.exports = {
   addProfile: (req, res) => {
@@ -189,5 +190,10 @@ module.exports = {
       .catch(err => {
         res.status(404).send(err)
       })
+  },
+  matchPercentage: (req, res) => {
+    redis.set('mostAveragePerson', 'www.average.com');
+    console.log(redis.get('mostAveragePerson'));
+    res.end();
   }
 }

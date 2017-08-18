@@ -57,6 +57,23 @@ export default class Match extends React.Component{
 			}
 		}
 	  
+		axios.all([
+      axios.get(`api/matches/percent/${this.props.match.subject_id}`),
+      axios.get(`api/match/${this.state.id}/${this.state.own_id}`)
+    ])
+    .then(axios.spread((res, match) => {
+		console.log(res, 'user profile of matchee');
+      this.setState({
+				id: res.data.id,
+				firstname: res.data.firstname,
+				age: res.data.age,
+				profilepic: res.data.profilepic,
+				matched: match.data
+			})
+    }))
+    .catch(err => { 
+      return console.error(err) 
+    });
 	}
 
 	isMatched() {

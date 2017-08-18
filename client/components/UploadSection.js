@@ -48,6 +48,7 @@ export default class UploadSection extends React.Component {
         }
         axios.post('https://api.kairos.com/recognize', body, {headers: api})
             .then(response => {
+                console.log(response.data, 'kairos recognize post');
                 console.log('There are ', response.data.images[0].candidates.length, ' matches');
                 this.setState({matches: response.data.images[0].candidates});
                 

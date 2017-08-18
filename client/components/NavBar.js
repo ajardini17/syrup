@@ -62,6 +62,7 @@ class NavBar extends Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
+              <li><Link to='/top'>Top</Link></li>
               <li><Link to='/matches'>Matches</Link></li>
               <li><Link to='/messages'>Messages</Link></li>
               <li><Link to='/upload'>Upload</Link></li>

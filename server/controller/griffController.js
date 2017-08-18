@@ -3,6 +3,7 @@ const db = require('../../db/models/model');
 module.exports = {
 	getMatchesByPercent: (req, res) => {
 		console.log('this is the req.params.subject_id ',req.params.subject_id);
+		
 		db.User.findOne({
 			where: {
 				id: req.params.subject_id

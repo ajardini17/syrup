@@ -45,5 +45,6 @@ router.put('/updateProfile/:id', controller.updateProfile);
 
 router.get('/message/:userId', controller.retrieveFirstName);
 
+router.get('/mostAverage', controller.matchPercentage);
 
 module.exports = router;
