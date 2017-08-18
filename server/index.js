@@ -12,7 +12,7 @@ require('dotenv').config();
 require('dotenv').load();
 
 
-const PORT = process.env.port || 8080;
+const PORT = process.env.PORT || 8080;
 
 
 app.use(parser.json());
