@@ -8,8 +8,11 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const cors = require('cors');
+require('dotenv').config();
+require('dotenv').load();
 
-const PORT = 8080;
+
+const PORT = process.env.port || 8080;
 
 
 app.use(parser.json());

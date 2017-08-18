@@ -77,11 +77,11 @@ const Message = db.define('message', {
 
 
 
-const matchOccurence = db.define('matchOccurence', {
-  sourceImage: Sequelize.STRING,
-  matchRate: Sequelize.INTEGER,
+// const matchOccurence = db.define('matchOccurence', {
+//   sourceImage: Sequelize.STRING,
+//   matchRate: Sequelize.INTEGER,
   
-});
+// });
 
 User.belongsToMany(User, {as: 'matchee', through: Match, unique: false});
 Message.belongsTo(User, { as: 'user', through: Message, foreignKey: {name: 'userId', unique: false }});

@@ -31,7 +31,7 @@ export default class Messages extends React.Component {
           messages: [...this.state.messages, data],
         })
     })
-      axios.get(`http://localhost:8080/api/matches/${localStorage.idTokenPayload}`)
+      axios.get(`/api/matches/${localStorage.idTokenPayload}`)
       .then(({data}) => {
         for (let i = 0; i < data.length; i++) {
           this.setState({
@@ -41,7 +41,7 @@ export default class Messages extends React.Component {
       })
       .then(() => {
         for (let j = 0; j < this.state.matcheeIds.length; j++) {
-          axios.get(`http://localhost:8080/api/profile/${this.state.matcheeIds[j]}`)
+          axios.get(`s/api/profile/${this.state.matcheeIds[j]}`)
             .then(({data}) => {
               this.setState({
                 firstnames: [...this.state.firstnames, data.firstname]
@@ -61,7 +61,7 @@ export default class Messages extends React.Component {
     this.setState({
       text: ''
     })
-    axios.post(`http://localhost:8080/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`, {
+    axios.post(`/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`, {
       text: this.state.text
     })
   }
@@ -73,7 +73,7 @@ export default class Messages extends React.Component {
       messages:[]
     }, () => {
       console.log('this is the first name', this.state.firstname)
-      // axios.get(`http://localhost:8080/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`)
+      // axios.get(`/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`)
       // .then(({data}) => {
       //   console.log('this is the data', data)
       //   for (let i = 0; i < data.length; i++) {
@@ -82,13 +82,13 @@ export default class Messages extends React.Component {
       //   })
       //   console.log('this is the messages', this. state.messages);
       // }})
-        axios.get(`http://localhost:8080/api/message/${localStorage.idTokenPayload}`)
+        axios.get(`/api/message/${localStorage.idTokenPayload}`)
           .then(({data}) => {
             console.log('this is the data of trying to get the firstname', data[0].email)
             this.setState({
               myname: data[0].email
             }, () => {
-                axios.get(`http://localhost:8080/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`)
+                axios.get(`/api/message/${localStorage.idTokenPayload}/${this.state.firstname}`)
                 .then(({data}) => {
                   console.log('this is the data', data)
                   for (let i = 0; i < data.length; i++) {
