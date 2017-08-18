@@ -42,18 +42,18 @@ io.on('connection', socket => {
     });
   socket.on('userOnline', username => {
     users[username] = socket.id;
-    console.log('SSBDCMBDSCMMSBCMSCHJBSJSMDS', users)
   })
   socket.on('send message', msg => {
     console.log('message: ' + msg)
     io.sockets.emit('chat message', msg);
   })
-  socket.on('promptVideoChat', (toName, myName) => {
-    socket.broadcast.to(users[toName]).emit('promptVideoChat', myName)
+  socket.on('promptVideoChat', (toName, myName, initId) => {
+    console.log('SENDING PROMPT FROM ', myName, "TO ", toName)
+    socket.broadcast.to(users[toName]).emit('promptVideoChat', toName, myName, initId)
   })
-  socket.on('agreeVideoChat', (toName) => {
-    console.log('VIDEOCHAT AGREED', toName)
-    socket.broadcast.to(users[toName]).emit('agreeVideoChat')
+  socket.on('agreeVideoChat', (toName, returnId) => {
+    socket.broadcast.to(users[toName]).emit('agreeVideoChat', toName, returnId)
+    console.log('SENDING VIDEOCHAT AGREEMENT TO ', toName, users)
   })
 
 })

@@ -29,26 +29,26 @@ export default class Auth {
         axios.get('https://stephaniefu.auth0.com/userinfo', {
           headers: {'Authorization': `Bearer ${authResult.accessToken}`}
         })
-      .then(({ data }) => {
-        console.log('this is the data', data)
-        console.log('this is the datan', data.name)
-        console.log('this is the datas', data.sub)
-        data.sub = data.sub.slice(data.sub.length - 2)
-        axios.post('/api/profile', {
-          email: data.name,
-          id:  data.sub 
-        })
-        .then(res => {
-          console.log('asdfasdf',res);
-          // axios.get('/api/')
-        })
-        .then(()=> {
-          this.setSession(authResult);
-        })
+    .then(({ data }) => {
+      console.log('this is the data', data)
+      console.log('this is the datan', data.name)
+      console.log('this is the datas', data.sub)
+      data.sub = data.sub.slice(data.sub.length - 2)
+      axios.post('/api/profile', {
+        email: data.name,
+        id: data.sub
       })
-      .catch(err => {
-        console.log(err)
+      .then(res => {
+        console.log('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfsdafasdfasdf',res);
+        // axios.get('/api/')
       })
+      .then(()=> {
+        this.setSession(authResult);
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
         // history.replace('/upload');
       } else if (err) {
         // history.replace('/upload');
