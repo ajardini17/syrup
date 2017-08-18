@@ -93,7 +93,7 @@ module.exports = {
         }
       })
       .then(matchedPersons => {
-
+        
         for (var i = 0; i < matchedPersons.length; i++) {
           var otherPerson = i === 0 ? 1 : 0;
           console.log('otherPerson: ', otherPerson);
