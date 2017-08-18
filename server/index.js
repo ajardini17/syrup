@@ -18,13 +18,13 @@ const PORT = process.env.PORT || 8080;
 app.use(parser.json());
 app.use(parser.urlencoded( {extended: true }));
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, '../static')));
+app.use(express.static(path.resolve(__dirname, '../static/index.html')));
 
 app.use(cors());
 
 app.use('/api', routes);
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../static/index.html'))
+  res.sendFile(path.resolve(__dirname, '../static/index.html'))
 });
 
 // socket.io
