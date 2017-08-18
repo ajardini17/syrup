@@ -31,10 +31,6 @@ export default class UploadSection extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         this.setState({input: this.state.input});
-<<<<<<< HEAD
-=======
-        //console.log('This is the input: ', this.state.input);
->>>>>>> finished feature
         const imageUrl = this.state.input;
         const api = {
             "app_key": apiKey.apiKey,
@@ -67,9 +63,10 @@ export default class UploadSection extends React.Component {
         if(this.state.isMatching){
             return (
                 <div>
-                
+                    <h3 id="uploading-message">Finding your matches...</h3>
+                    <div className="crop">
                         <img src={this.state.input} id="uploaded-pic"/>
-
+                    </div>    
                 </div>    
             );
         }
@@ -88,12 +85,12 @@ export default class UploadSection extends React.Component {
     render(){
         console.log(this.props, 'hello this is the props in UploadSection: ')
         //console.log('state in uploadselection', this.state.matches);
-
         return(
             <div>
+                <div className="map">
+                </div>
                 <div className="intro-header-upload">
                     <div className="container">
-
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="intro-message">
@@ -117,7 +114,9 @@ export default class UploadSection extends React.Component {
                     </div>
                 </div>
                 {this.renderMatchesUploadSection()}
+                {/* <MapContainer /> */}
             </div>
+            
 
         );
     }
