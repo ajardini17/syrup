@@ -2,18 +2,20 @@ import React from 'react';
 import NavBar from './NavBar';
 import axios from 'axios';
 import MatchesResults from './MatchesResults'
+import MapContainer from './MapContainer.jsx'
 
 export default class Matches extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: localStorage.idTokenPayload,
-      matches: []
+      matches: [],
+      matchesTabe: ''
     }
   }
 
   componentDidMount(){
-    console.log('THIS IS A userID in Matches: ', this.state.userId);
+    //console.log('THIS IS A userID in Matches: ', this.state.userId);
     axios.get(`/api/matches/${this.state.userId}`)
       .then(data => {
         this.setState({matches: data.data});
@@ -22,10 +24,11 @@ export default class Matches extends React.Component {
       .catch(err => {
         console.log(err);
       })
-    console.log('These are the props in matches: ', this.props);
+    //console.log('These are the props in matches: ', this.props);
   }
 
   render() {
+    console.log('this is the props in matches:', this.props)
     return (
       <div className="intro-message">
         <NavBar />

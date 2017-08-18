@@ -39,6 +39,14 @@ const User = db.define('user', {
   age: {
     type: Sequelize.INTEGER,
     allowNull: true
+  },
+  latitude: {
+    type: Sequelize.FLOAT,
+    allowNull: true
+  },
+  longitude: {
+    type: Sequelize.FLOAT,
+    allowNull: true
   }
 }, {
   timestamps: false

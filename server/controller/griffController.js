@@ -17,5 +17,14 @@ module.exports = {
 				res.status(500).send(err);
 				console.log('Error fetching data ', err);
 			})
-	}		
+	},
+	getAllUsers : (req, res) => {
+		db.User.findAll({})
+			.then(result => {
+				res.status(200).send(result)
+			})
+			.catch(err => {
+				res.status(404).send(err)
+			})
+	}
 }

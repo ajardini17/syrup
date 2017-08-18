@@ -51,8 +51,8 @@ class editProfile extends Component {
 
   handleProfileImageUpload(file) {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                     .field('file', file);
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
 
     upload.end((err, response) => {
       if (err) {
@@ -60,6 +60,7 @@ class editProfile extends Component {
       }
 
       if (response.body.secure_url !== '') {
+        console.log('this is inside hanleProfileImageUpload', file)
         this.setState({
           uploadedProfileCloudinaryUrl: response.body.secure_url,
           profilepic: response.body.secure_url
@@ -74,8 +75,8 @@ class editProfile extends Component {
 
   handleImageUpload(file) {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                     .field('file', file);
+          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+          .field('file', file);
 
     upload.end((err, response) => {
       if (err) {

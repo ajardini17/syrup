@@ -3,6 +3,7 @@ import axios from 'axios';
 import appId from '../../apiKey';
 import apiKey from '../../apiKey';
 import MatchesUploadSection from './MatchesUploadSection';
+import MapContainer from './MapContainer.jsx'
 
 export default class UploadSection extends React.Component {
     constructor(props) {
@@ -10,28 +11,36 @@ export default class UploadSection extends React.Component {
         this.state = {
             input: '',
             isMatching: false,
-            matches: []
+            matches: [],
+            matchArray: []
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    componentDidMount(){
 
+    }
     handleInputChange(event){
         event.preventDefault();
         this.setState({input: event.target.value}, () => {
-            console.log('This is the state of input: ', this.state.input);
+            //onsole.log('This is the state of input: ', this.state.input);
         })
     }
 
     handleSubmit(event){
         event.preventDefault();
         this.setState({input: this.state.input});
+<<<<<<< HEAD
+=======
+        //console.log('This is the input: ', this.state.input);
+>>>>>>> finished feature
         const imageUrl = this.state.input;
         const api = {
             "app_key": apiKey.apiKey,
             "app_id": appId.appId
         };
+       // console.log(imageUrl)
         const body = {
             "image": imageUrl,
             "gallery_name": "SyrupPractice",
@@ -45,9 +54,11 @@ export default class UploadSection extends React.Component {
             .then(response => {
                 console.log('There are ', response.data.images[0].candidates.length, ' matches');
                 this.setState({matches: response.data.images[0].candidates});
+                
                 //console.log('This is the state of matches: ', this.state.matches);
             })
             .catch(error => {
+                console.log('hello', body, {headers:api})
                 console.log(error);
             })
     }
@@ -68,14 +79,16 @@ export default class UploadSection extends React.Component {
         if(this.state.isMatching){
             return (
                 <div>
-                    <MatchesUploadSection matches={this.state.matches} history={this.props.history}/>
+                    <MatchesUploadSection matches={this.state.matches} history={this.props.history} latitude={this.props.latitude} longitude={this.props.longitude}/>
                 </div>        
             );
         }
     }
 
     render(){
-        //console.log('props in US', this.props);
+        console.log(this.props, 'hello this is the props in UploadSection: ')
+        //console.log('state in uploadselection', this.state.matches);
+
         return(
             <div>
                 <div className="intro-header-upload">
@@ -90,7 +103,6 @@ export default class UploadSection extends React.Component {
                                 </div>
                             </div>
                             <div>
-                        
                             </div>
                             <form className="upload-form">
                                 <input onChange={this.handleInputChange} type="text" className="input-lg" placeholder="Enter image url..." />
@@ -98,6 +110,10 @@ export default class UploadSection extends React.Component {
                             </form>
                             {this.renderUploadPic()}
                         </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12">
                     </div>
                 </div>
                 {this.renderMatchesUploadSection()}
