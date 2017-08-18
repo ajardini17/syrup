@@ -1,12 +1,8 @@
 var db = require('./db/models/model.js');
 
-// db.User.belongsToMany(db.User, {as: 'matchee', through: db.Match, unique: false});
-// db.Message.belongsTo(db.User, { as: 'user', through: db.Message, foreignKey: {name: 'userId', unique: false }})
-// db.Message.belongsTo(db.User, { as: 'recipient', through: db.Message, foreignKey: {name: 'recipientId', unique: false }})
-
 db.User.sync({force: true})
   .then(() => {
-    return User.bulkCreate([
+    return db.User.bulkCreate([
         {id: '2',firstname: 'bryan', email: 'asdf1@gmail.com', profilepic: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?h=350&auto=compress&cs=tinysrgb', images: [], bio: 'I am a big dummy user', gender: 'male', age: 22,},
             {id: '3',firstname: 'steven', email: 'asdf2@gmail.com', profilepic: 'https://images.pexels.com/photos/247917/pexels-photo-247917.jpeg?h=350&auto=compress&cs=tinysrgb', images: [], bio: 'I am a big dummy user', gender: 'male', age: 23,},
             {id: '4',firstname: 'bill', email: 'asdf3@gmail.com', profilepic: 'https://images.pexels.com/photos/111738/pexels-photo-111738.jpeg?h=350&auto=compress&cs=tinysrgb', images: [], bio: 'I am a big dummy user', gender: 'male', age: 24,},
@@ -31,16 +27,25 @@ db.User.sync({force: true})
             {id: '22',firstname: 'heather', email: 'qasd345f@gmail.com', profilepic: 'http://images.huffingtonpost.com/2014-08-05-TerreroNinared.jpg', images: [], bio: 'I am a big dummy user', gender: 'female', age: 27,},
             {id: '23',firstname: 'cary', email: 'asaesdfdf@gmail.com', profilepic: 'http://images.totalbeauty.com/content/photos/01-intro-totalbeauty-logo-Latina-Acne.jpg', images: [], bio: 'I am a big dummy user', gender: 'female', age: 28,},
             {id: '24',firstname: 'jennifer', email: 'apsdasdffff@gmail.com', profilepic: 'https://s-media-cache-ak0.pinimg.com/736x/f1/e0/f8/f1e0f89ea5d4275714a7af7c8f15c861--latina-girls-piano-bar.jpg', images: [], bio: 'I am a big dummy user', gender: 'female', age: 21,}
-      ])
-        .then(() => {
-          console.log('seed successful!');
-        })
-        .catch(() => {
-          console.log('seed unsuccessful');
-        });
+      ])    
   })
   .catch(err => {
-    console.log('error in bulk create', err);
-  });
+    console.log('error in bulk create, user', err);
+  })
+  .then(() => {
+    console.log('user seed successful!');
+    db.Match.sync()
+  })
+  .catch(err => {
+    console.log('match seed unsuccessful');
+  })
+  .then(() => {
+    console.log('message seed successful');
+    db.Message.sync()  
+  })
+  .catch(err => {
+    console.log('message seed unsuccessful');
+  })
+  
   // db.Match.sync({force: true});
   // db.Message.sync({force: true});

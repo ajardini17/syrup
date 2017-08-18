@@ -81,24 +81,34 @@ module.exports = {
       matcheeId: req.params.id,
     })
     .then(data => {
-      Model.User.findOne({
+      Model.User.findAll({
         where: {
-          id: req.params.id
+          // id: req.params.id,
+          // $or: [
+          //   {id: req.params.subject_id },
+          // ]
+          id: {
+            $or: [req.params.subject_id, req.params.id]
+          }
         }
       })
-      .then(matchedPerson => {
-        console.log('in the matched person', matchedPerson.phone_number);
-        client.messages.create({
-          to: matchedPerson.phone_number,
-          from: process.env.TWILIO_NUM,
-          body: `you have a match with ${matchedPerson.firstname}!`
-        }, function(err, message) {
-          if (err) {
-            console.log(`error in twilio send ${err}`);
-          } else {
-            console.log(message.sid);
-          }
-        })
+      .then(matchedPersons => {
+
+        for (var i = 0; i < matchedPersons.length; i++) {
+          var otherPerson = i === 0 ? 1 : 0;
+          console.log('otherPerson: ', otherPerson);
+          client.messages.create({
+            to: matchedPersons[i].phone_number,
+            from: process.env.TWILIO_NUM,
+            body: `you have a match with ${matchedPersons[otherPerson].firstname}!`
+          }, function(err, message) {
+            if (err) {
+              console.log(`error in twilio send ${err}`);
+            } else {
+              console.log(message.sid);
+            }
+          })
+        }
       })
       .catch(err => {
         console.log('error in finding id for twilio', err);
