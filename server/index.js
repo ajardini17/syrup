@@ -28,9 +28,9 @@ app.get('/bundle.js', (req, res) => {
 });
 
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../static/index.html'))
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../static/index.html'))
+});
 
 // socket.io
 server.listen(PORT, err => {
