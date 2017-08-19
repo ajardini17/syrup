@@ -14,6 +14,7 @@ router.get('/matches/:userId', controller.getMatches);
 // router.get('/matches/recent', controller.getMatchesByRecent);
 // //Add personal info *********CHANGEDDDD*********
 router.post('/profile', controller.addProfile);
+router.get('/users', griffController.getAllUsers)
 // //Edit personali info
 // router.put('/profile/:id', controller.editProfile);
 // //Upload profile pic

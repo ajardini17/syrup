@@ -332,3 +332,16 @@ h1 {
     font-weight: 700;
     font-size: 60px;
 }
+
+.map{
+  margin-top: 15px;
+  z-index:999;
+  height: 500px;
+
+}
+.form-group{
+    margin-top: 100px;
+}
+.map1{
+    margin-top: -30px;
+}
