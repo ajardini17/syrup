@@ -1,11 +1,15 @@
 const redis = require('redis');
+require('dotenv').config();
+require('dotenv').load();
 
-const client = redis.createClient();
+const client = redis.createClient({
+    url: process.env.REDIS_URL
+});
 
-var url = require('url');
-var redisURL = url.parse(process.env.REDIS_URL);
-var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
-client.auth(redisURL.auth.split(":")[1]);
+// var url = require('url');
+// var redisURL = url.parse(process.env.REDIS_URL);
+// var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+// client.auth(redisURL.auth.split(":")[1]);
 // if you'd like to select database 3, instead of 0 (default), call 
 // client.select(3, function() { /* ... */ }); 
 

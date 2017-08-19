@@ -17,7 +17,9 @@ module.exports = {
         bio: req.body.bio,
         profilepic: req.body.profilepic,
         phone_number: req.body.phoneNumber,
-        images: req.body.images
+        images: req.body.images,
+        latitude: -117.9354168,
+        longitude: 33.9246179
       }
     })
   .then(data => {
@@ -219,7 +221,7 @@ module.exports = {
     console.log('closest Pair');
     let response = [[]];
     redis.get('closestPair', (err, reply) => {
-      console.log(reply, 'closestPair');
+
       let pairResult = JSON.parse(reply);
       console.log(pairResult);
       Model.User.findOne({where: {id: pairResult[0][0]}})
@@ -229,7 +231,6 @@ module.exports = {
         .then(secondPair => {
           response[0].push(secondPair.dataValues);
           response.push(pairResult[1]);
-          console.log(response, 'response for closest Pair');
           res.send(JSON.stringify(response))
         });
       })
