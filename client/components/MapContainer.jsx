@@ -49,7 +49,9 @@ class MapContainer extends Component{
       foundAddress: INITIAL_LOCATION.address,
       address : '',
       latitude: 0,
-      longitude: 0
+      longitude: 0,
+      toggle : false
+
     }
     this.geocodeAddress = this.geocodeAddress.bind(this)
     this.addressOnChange = this.addressOnChange.bind(this)
@@ -92,11 +94,14 @@ class MapContainer extends Component{
     }.bind(this));
   }
   addressOnChange(e){
-    
+    //console.log(e.target.value, 'hello')
     e.preventDefault();
     var address = e.target.value
     this.setState({
-      address : this.geocodeAddress(e.target.value)
+      address : this.geocodeAddress(e.target.value),
+      toggle: true
+    }, ()=> {
+
     })
     //this.geocodeAddress(address);
    
@@ -154,8 +159,6 @@ class MapContainer extends Component{
                 <div className="col-xs-4 col-sm-2">
 
                     <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-                 
-
                 </div>
               </div>
             </form>
@@ -171,7 +174,7 @@ class MapContainer extends Component{
             
           </div>
         </div>
-        <UploadSection history={this.props.history} latitude={this.state.latitude} longitude={this.state.longitude}/>
+        {this.state.toggle === true ? <UploadSection history={this.props.history} latitude={this.state.latitude} longitude={this.state.longitude}/> : null}
       </div>
     );
   }

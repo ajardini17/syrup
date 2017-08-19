@@ -33,9 +33,9 @@ export default class MatchesUploadSection extends React.Component {
 				
 				latDifference = this.props.latitude - result.data[i].latitude;
 				longDifference = this.props.longitude - result.data[i].longitude;
-				
+					console.log(latDifference, longDifference)
 			    if (Math.abs(latDifference) < .04 && Math.abs(longDifference) < .04){
-					// console.log(latDifference)
+					console.log(latDifference)
 					newMatches.push(result.data[i])
 					// console.log(latDifference, longDifference)
 					// console.log(result.data[i])
@@ -69,11 +69,15 @@ export default class MatchesUploadSection extends React.Component {
 		                </div>
 		            </div>
 		            	<div className="row">
-							{this.state.geoMatches.length > 0 ? this.state.geoMatches.map((match, i) => 
+							
+							{this.state.geoMatches.map((match, i) => 
+		            			<Match match={match} history={this.props.history} iterator={i} longitude = {this.props.longitude} latitude = {this.props.latitude} confidence={this.props.matches} allUsers={this.state.allUsers}/>
+							)}
+							{/* {this.state.geoMatches.length > 0 ? this.state.geoMatches.map((match, i) => 
 		            			(<Match match={match} history={this.props.history} iterator={i} longitude = {this.props.longitude} latitude = {this.props.latitude} confidence={this.props.matches} allUsers={this.state.allUsers}/>)
-		            		): this.state.matches.map((match, i) => 
+		            		): this.props.matches.map((match, i) => 
 		            			(<Match match={match} history={this.props.history} iterator={i} longitude = {this.props.longitude} latitude = {this.props.latitude} confidence={this.props.matches} allUsers={this.state.allUsers}/>)
-		            		)}
+		            		)} */}
 		            		
 		            	</div>
 		        </div>

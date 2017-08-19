@@ -49,7 +49,10 @@ export default class Match extends React.Component{
 	componentDidMount(){
 		for(let i =0; i < this.props.allUsers.length; i++){
 			if (this.props.allUsers[i].id === this.props.match.subject_id){
-				this.setState({currentMatch: this.props.allUsers[i]})
+				//console.log('currentmatch', this.props.allUsers[i])
+				this.setState({currentMatch: this.props.allUsers[i]}, ()=>{
+
+				})
 			}
 		}
 	  
@@ -75,10 +78,10 @@ export default class Match extends React.Component{
 	}
 
 	render(){
-		console.log('hello this is matches', this.props)
+		console.log('hello this is matches', this.props, this.state.currentMatch.firstname)
 		// console.log(this.state.currentMatch)
 		if (this.props.match.profilepic === undefined){
-			console.log('hello')
+			//console.log('hello')
 			return (
 			
 			<div className="col-sm-4 text-center match" onClick={this.renderProfile}>
