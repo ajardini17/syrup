@@ -23,9 +23,14 @@ app.use(express.static(path.resolve(__dirname, '../static')));
 app.use(cors());
 
 app.use('/api', routes);
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../static/index.html'))
+app.get('/bundle.js', (req, res) => {
+  console.log('gotum')
 });
+
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../static/index.html'))
+// });
 
 // socket.io
 server.listen(PORT, err => {
