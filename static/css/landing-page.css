@@ -246,6 +246,14 @@ h1 {
     top: 350px;
 }
 
+.statsCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    left: 12%;
+    top: 350px;
+}
 .profileContainer {
     padding: 0 16px;
 }

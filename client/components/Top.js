@@ -16,7 +16,7 @@ class Top extends Component {
     }
     componentWillMount() {
         axios.get('/api/mostAverage').then(resp => this.setState({average: resp.data}));
-        axios.get('/api/mostMatches').then(resp => this.setState({mostMatched: resp.data}));
+        axios.get('/api/mostMatches').then(resp => this.setState({mostMatched: JSON.parse(resp.data)}));
         axios.get('/api/closestPair').then(resp => this.setState({closestPair: resp.data}));
         // this.topCelebrities()
         // .then(results => {
@@ -29,60 +29,82 @@ class Top extends Component {
 
     render() {
         // const listItems = celebrities.map((person) => <CelebrityListItem Person = {person}/>)
-        
+
+        let average = null;
+        let mostMatched = null;
+        let closestPair = null;
+        if(this.state.average !== '') {
+            average = <div>
+                <h3 style={{textAlign: 'center'}}> Most Similar </h3>
+            <div className="statsCard" >
+              <img src={this.state.average.profilepic} width="300" height="200"/>
+              <div className="profileContainer">
+                <h2>{this.state.average.firstname}, {this.state.average.age}</h2>
+                <p>{this.state.average.bio}</p>
+          
+                {/* {this.isMatched()} */}
+              </div>
+            </div>
+          </div>
+        }
+        if(this.state.mostMatched !== '') {
+            mostMatched = <div>
+                <h3 style = {{textAlign: 'center'}}> Most Matches: {this.state.mostMatched[1]} </h3>
+            <div className="statsCard" >
+              <img src={this.state.mostMatched[0].profilepic} width="300" height="200"/>
+              <div className="profileContainer">
+                <h2>{this.state.mostMatched[0].firstname}, {this.state.mostMatched[0].age}</h2>
+                <p>{this.state.mostMatched[0].bio}</p>
+                {/* {this.isMatched()} */}
+              </div>
+            </div>
+          </div>
+        }
+        if(this.state.closestPair.length > 0) {
+            closestPair = <div>
+                <h3 style = {{textAlign: 'center'}}>closest Pairs: {this.state.closestPair[1]} % </h3> 
+                <div>
+            <div className="statsCard" >
+              <img src={this.state.closestPair.profilepic} width="300" height="200"/>
+              <div className="profileContainer">
+                <h2>{this.state.closestPair[0][0].firstname}, {this.state.closestPair[0][0].age}</h2>
+                <p>{this.state.closestPair[0][0].bio}</p>
+
+                {/* {this.isMatched()} */}
+              </div>
+            </div>
+            <div className="statsCard" >
+              <img src={this.state.closestPair[0][1].profilepic} width="300" height="200"/>
+              <div className="profileContainer">
+                <h2>{this.state.closestPair[0][1].firstname}, {this.state.closestPair[0][1].age}</h2>
+                <p>{this.state.closestPair[0][1].bio}</p>
+
+                {/* {this.isMatched()} */}
+              </div>
+            </div>
+            </div>
+          </div>
+        }
+        console.log(this.state.average, 'average');
+        console.log(this.state.mostMatched, 'most matched');
+        console.log(typeof this.state.mostMatched);
+        console.log(this.state.closestPair, 'closestPair');
         return (
             <div>
                <div className="intro-message">
                 <NavBar />
                 <div>
-                    <div>
-                        Most Average
-                        </div>
-            <div className="profileCard">
-                <img src={this.state.average.profilepic} width="300" height="200"/>
-                <div className="profileContainer">
-                    <h2>{this.state.average.firstname}, {this.state.average.age}</h2>
-                    <p>{this.average.data.bio}</p>
-                    {/* {this.isMatched()} */}
+                {average}
                 </div>
+                <div>
+                {mostMatched}
+                </div>
+                <div>
+                {closestPair}
+                </div>
+     
+      </div>
 
-                
-            </div>
-            </div>
-            
-            <div>
-            <div className="profileCard">
-                <img src={this.props.data.profilepic} width="300" height="200"/>
-                <div className="profileContainer">
-                    <h2>{this.props.data.firstname}, {this.props.data.age}</h2>
-                    <p>{this.props.data.bio}</p>
-                    {this.isOwnProfile()}
-                    {/* {this.isMatched()} */}
-                </div>
-
-                
-            </div>
-            </div>
-       
-            <div>
-            <div className="profileCard">
-                <img src={this.props.data.profilepic} width="300" height="200"/>
-                <div className="profileContainer">
-                    <h2>{this.props.data.firstname}, {this.props.data.age}</h2>
-                    <p>{this.props.data.bio}</p>
-                    {/* {this.isMatched()} */}
-                </div>
-
-                
-            </div>
-            </div>
-            <div className="photosContainer">
-            <div className="row">
-        
-             </div> 
-                </div>
-                </div>
-                
                 
             
             </div>
