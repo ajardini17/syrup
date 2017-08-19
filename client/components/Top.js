@@ -32,7 +32,56 @@ class Top extends Component {
         
         return (
             <div>
-               
+               <div className="intro-message">
+                <NavBar />
+                <div>
+                    <div>
+                        Most Average
+                        </div>
+            <div className="profileCard">
+                <img src={this.state.average.profilepic} width="300" height="200"/>
+                <div className="profileContainer">
+                    <h2>{this.state.average.firstname}, {this.state.average.age}</h2>
+                    <p>{this.average.data.bio}</p>
+                    {/* {this.isMatched()} */}
+                </div>
+
+                
+            </div>
+            </div>
+            
+            <div>
+            <div className="profileCard">
+                <img src={this.props.data.profilepic} width="300" height="200"/>
+                <div className="profileContainer">
+                    <h2>{this.props.data.firstname}, {this.props.data.age}</h2>
+                    <p>{this.props.data.bio}</p>
+                    {this.isOwnProfile()}
+                    {/* {this.isMatched()} */}
+                </div>
+
+                
+            </div>
+            </div>
+       
+            <div>
+            <div className="profileCard">
+                <img src={this.props.data.profilepic} width="300" height="200"/>
+                <div className="profileContainer">
+                    <h2>{this.props.data.firstname}, {this.props.data.age}</h2>
+                    <p>{this.props.data.bio}</p>
+                    {/* {this.isMatched()} */}
+                </div>
+
+                
+            </div>
+            </div>
+            <div className="photosContainer">
+            <div className="row">
+        
+             </div> 
+                </div>
+                </div>
                 
                 
             
