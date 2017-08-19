@@ -24,7 +24,7 @@ app.use(cors());
 
 app.use('/api', routes);
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../static/index.html'))
+  res.sendFile(path.resolve(__dirname, '../static'))
 });
 
 // socket.io
