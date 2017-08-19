@@ -41,7 +41,8 @@ db.User.sync({force: true})
   })
   .then(() => {
     console.log('message seed successful');
-    db.Message.sync()  
+    db.Message.sync();
+    process.exit();  
   })
   .catch(err => {
     console.log('message seed unsuccessful');

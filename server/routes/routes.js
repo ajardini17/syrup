@@ -45,6 +45,10 @@ router.put('/updateProfile/:id', controller.updateProfile);
 
 router.get('/message/:userId', controller.retrieveFirstName);
 
-// router.get('/mostAverage', controller.matchPercentage);
+router.get('/mostAverage', controller.mostAverage);
+
+router.get('/mostMatches', controller.mostMatches);
+
+router.get('/closestPair', controller.closestPair);
 
 module.exports = router;

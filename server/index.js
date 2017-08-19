@@ -8,6 +8,8 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const cors = require('cors');
+const pageRank = require('../db/seedRedis.js');
+pageRank();
 require('dotenv').config();
 require('dotenv').load();
 

@@ -3,7 +3,7 @@ const express = require('express');
 const Model = require('../../db/models/model');
 const data = require('../../data');
 const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
-// const redis = require('../../db/redis.js');
+const redis = require('../../db/redis.js');
 
 module.exports = {
   addProfile: (req, res) => {
@@ -191,9 +191,51 @@ module.exports = {
         res.status(404).send(err)
       })
   },
-  // matchPercentage: (req, res) => {
-  //   redis.set('mostAveragePerson', 'www.average.com');
-  //   console.log(redis.get('mostAveragePerson'));
-  //   res.end();
-  // }
+  mostAverage: (req, res) => {
+    console.log('in mostAverage');
+    redis.get('personRankings', (err, reply) => {
+      console.log(reply, 'person Ranking average');
+      let rankings = JSON.parse(reply);
+      let max = -Infinity;
+      let maxKey;
+      for(var key in rankings) {
+        if(rankings[key] > max && rankings[key] !== 1) {
+          max = rankings[key];
+          maxKey = key;
+        }
+      }
+      Model.User.findOne({where: {id: maxKey}})
+      .then(result => res.send(result));
+    });
+  },
+  mostMatches: (req, res) => {
+    console.log('in most matches');
+    redis.get('mostMatches', (err, reply) => {
+      console.log(reply, 'most Matches');
+      res.send(JSON.stringify(reply));
+    })
+  },
+  closestPair: (req, res) => {
+    console.log('closest Pair');
+    let response = [[]];
+    redis.get('closestPair', (err, reply) => {
+      console.log(reply, 'closestPair');
+      let pairResult = JSON.parse(reply);
+      console.log(pairResult);
+      Model.User.findOne({where: {id: pairResult[0][0]}})
+      .then(firstPair => {
+        response[0].push(firstPair.dataValues);
+        Model.User.findOne({where: {id: pairResult[0][1]}})
+        .then(secondPair => {
+          response[0].push(secondPair.dataValues);
+          response.push(pairResult[1]);
+          console.log(response, 'response for closest Pair');
+          res.send(JSON.stringify(response))
+        });
+      })
+      
+    })
+  }
+
+
 }

@@ -6,13 +6,18 @@ import CelebrityListItem from './CelebrityListItem.js';
 class Top extends Component {
     constructor(props){
         super(props);
-        this.state({
-            celebrities: ''
-        });
+        this.state = {
+            celebrities: '',
+            average: '',
+            mostMatched: '',
+            closestPair: []
+        };
         // this.topCelebrities = this.topCelebrities.bind(this);
     }
     componentWillMount() {
-        axios.get('/api/mostAverage').then(resp => console.log('response gotten'));
+        axios.get('/api/mostAverage').then(resp => this.setState({average: resp.data}));
+        axios.get('/api/mostMatches').then(resp => this.setState({mostMatched: resp.data}));
+        axios.get('/api/closestPair').then(resp => this.setState({closestPair: resp.data}));
         // this.topCelebrities()
         // .then(results => {
         //     this.setState({celebrities: results.data});
@@ -23,15 +28,12 @@ class Top extends Component {
     // }
 
     render() {
-    
-        const celebrities = this.state.celebrities
-        const listItems = celebrities.map((person) => <CelebrityListItem Person = {person}/>)
+        // const listItems = celebrities.map((person) => <CelebrityListItem Person = {person}/>)
+        
         return (
             <div>
-               <div className="intro-message">
-                <NavBar />
-                    {listItems}
-                </div>
+               
+                
                 
             
             </div>

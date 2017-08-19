@@ -1,6 +1,5 @@
 node_modules
 static/bundle.js*
 bundle.js*
-
 .env
 dbUrl.js
