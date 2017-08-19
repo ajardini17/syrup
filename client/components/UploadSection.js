@@ -87,7 +87,7 @@ export default class UploadSection extends React.Component {
         //console.log('state in uploadselection', this.state.matches);
         return(
             <div>
-                <div className="map">
+                <div className="map1">
                 </div>
                 <div className="intro-header-upload">
                     <div className="container">

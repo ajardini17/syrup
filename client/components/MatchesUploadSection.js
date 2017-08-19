@@ -34,7 +34,7 @@ export default class MatchesUploadSection extends React.Component {
 				latDifference = this.props.latitude - result.data[i].latitude;
 				longDifference = this.props.longitude - result.data[i].longitude;
 					console.log(latDifference, longDifference)
-			    if (Math.abs(latDifference) < .04 && Math.abs(longDifference) < .04){
+			    if (Math.abs(latDifference) < .3 && Math.abs(longDifference) < .3){
 					console.log(latDifference)
 					newMatches.push(result.data[i])
 					// console.log(latDifference, longDifference)

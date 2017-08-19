@@ -23,7 +23,7 @@ export default class UploadPage extends React.Component {
 			<div>
 				<NavBar/>
 				
-				<Footer/>
+				{/* <Footer/> */}
 				<div>
 					<MapContainer history={this.props.history}/>
 					</div>

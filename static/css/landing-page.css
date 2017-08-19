@@ -334,8 +334,14 @@ h1 {
 }
 
 .map{
-  margin-top: 200px;
+  margin-top: 15px;
   z-index:999;
   height: 500px;
 
+}
+.form-group{
+    margin-top: 100px;
+}
+.map1{
+    margin-top: -30px;
 }
