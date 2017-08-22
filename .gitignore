@@ -3,3 +3,4 @@ static/bundle.js*
 bundle.js*
 .env
 dbUrl.js
+client/Auth/auth0.js
