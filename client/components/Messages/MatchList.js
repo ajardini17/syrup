@@ -12,4 +12,5 @@ const MatchList = ({ firstnames, handleMatchClick }) => {
   );
 };
 
+
 export default MatchList;
